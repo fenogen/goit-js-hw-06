@@ -87,36 +87,32 @@ const users = [
   },
 ];
 
-// // Массив имен (поле name) людей, отсортированных в зависимости от количества их друзей (поле friends)
-
-// const getNamesSortedByFriendsCount = users => {
-//   const result = [];                                                    //---> Создали шаблон для вывода резульата в массиве
-//   users.map(user => {                                                   //---> Запустили ф-ю трансформации массива
-//     console.log(`${user.name} - friends: ${user.friends.length}`);
-//     result.splice(user.friends.length, 0, user.name);                   //---> вставляем в наш массив элементы по принципу - позиция = длина каждого элем.
-//   });
-//   return result;
-// };
-
-// console.log(getNamesSortedByFriendsCount(users));
 
 
-// Получить массив всех умений всех пользователей (поле skills), при этом не должно быть повторяющихся умений и они должны быть отсортированы в алфавитном порядке.
+// Получить массив всех умений всех пользователей (поле skills), при этом не должно быть 
+// повторяющихся умений и они должны быть отсортированы в алфавитном порядке.
+
+// ----------------------------------------------------- 2й вариант (с методом - forEach)
 
 const getSortedUniqueSkills = users => {
-  const result = [];
-  let b = '';
-  users.forEach(item => {
-    // console.log(item.skills);
-    const c = item.skills.join(' ');
-    // console.log(c);
-    b = b + c;
-  });
-  console.log(b);
-  b = b.split(' ');
-  console.log(b);
-  b.forEach(item => 
-};
+  const arrayAll = users.reduce((total, user, index, array) => {
+    total.push(...user.skills);
+    return total;
+  }, []);
+  console.log('Массив из всех свойств:', arrayAll);
+
+  const arrayFilter = arrayAll.reduce((total, item) => {
+    if (total.includes(item) === true) {
+      return total;
+    }
+    total.push(item);
+    return total;
+  }, []);
+  console.log('Отфильтрованные свойства:', arrayFilter);
+
+  return console.log('Отсортированные свойства:', arrayFilter.sort());
+}
+
 
 console.log(getSortedUniqueSkills(users));
 // [ 'adipisicing', 'amet', 'anim', 'commodo', 'culpa', 'elit', 'ex', 'ipsum', 'irure', 'laborum', 'lorem', 'mollit', 'non', 'nostrud', 'nulla', 'proident', 'tempor', 'velit', 'veniam' ]

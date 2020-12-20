@@ -1,5 +1,3 @@
-
-
 'use strict';
 
 const users = [
@@ -89,13 +87,36 @@ const users = [
   },
 ];
 
-// Получить массив имен всех пользователей (поле name).
 
+// Получить массив всех умений всех пользователей (поле skills), при этом не должно быть 
+// повторяющихся умений и они должны быть отсортированы в алфавитном порядке.
 
-const getUserNames = users => {
-  const result = users.map(user => user.name);
-  return result;
+// ----------------------------------------------------- 1й вариант (с методом - forEach)
+const getSortedUniqueSkills = users => {
+  let arrayAll = [];
+  let arrayFilter = [];
+
+  users.forEach(item => {
+    arrayAll = arrayAll.concat(item.skills);
+    return arrayAll;
+  });
+  console.log('Массив из всех свойств:', arrayAll);
+
+  arrayAll.forEach(item => {
+    if (arrayFilter.includes(item) === true) {
+      return arrayFilter;
+    }
+    arrayFilter.push(item);
+    return arrayFilter;
+  });
+  console.log('Отфильтрованные свойства:', arrayFilter);
+
+  return console.log('Отсортированные свойства:', arrayFilter.sort());
 };
 
-console.log(getUserNames(users));
-// [ 'Moore Hensley', 'Sharlene Bush', 'Ross Vazquez', 'Elma Head', 'Carey Barr', 'Blackburn Dotson', 'Sheree Anthony' ]
+
+console.log(getSortedUniqueSkills(users));
+// [ 'adipisicing', 'amet', 'anim', 'commodo', 'culpa', 'elit', 'ex', 'ipsum', 'irure', 'laborum', 'lorem', 'mollit', 'non', 'nostrud', 'nulla', 'proident', 'tempor', 'velit', 'veniam' ]
+
+
+

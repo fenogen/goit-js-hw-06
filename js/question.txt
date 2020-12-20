@@ -8,5 +8,3 @@ console.log(numbers2.find(num => num < 5)); // 0   ------почему 0 а не 
 
 console.log(numbers2.find(num => num === 5)); // 5
 
-
-Task #10 - не готово.
