@@ -101,7 +101,7 @@ const getSortedUniqueSkills = users => {
   }, []);
   console.log('Массив из всех свойств:', arrayAll);
 
- // --------------------- 1-й вариант условия для фильтрации:
+//  --------------------- 1-й вариант условия для фильтрации:
   const arrayFilter = arrayAll.reduce((total, item) => {
     if (total.includes(item) === true) {
       return total;
@@ -117,6 +117,7 @@ const getSortedUniqueSkills = users => {
   //   }
   //   return total;
   // }, []);
+
   console.log('Отфильтрованные свойства:', arrayFilter);
 
   return console.log('Отсортированные свойства:', arrayFilter.sort());

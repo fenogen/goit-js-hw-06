@@ -87,26 +87,32 @@ const users = [
   },
 ];
 
-// Массив имен (поле name) людей, отсортированных в зависимости от количества их друзей (поле friends)
 
-const getNamesSortedByFriendsCount = users => {
-// ------------------------------------------------------1-й вариант (метод - Map)
-  const result = [];                                                                 //---> Создали шаблон для вывода резульата в массиве
-  users.map(user => {                                                                //---> Запустили ф-ю трансформации массива
-    console.log(`${user.name} - friends: ${user.friends.length}`);
-    result.splice(user.friends.length, 0, user.name);                                //---> вставляем в наш массив элементы по принципу - позиция = длина каждого элем.
+
+// Получить массив всех умений всех пользователей (поле skills), при этом не должно быть 
+// повторяющихся умений и они должны быть отсортированы в алфавитном порядке.
+
+// ----------------------------------------------------- 3й вариант (с методом - reduce + filter)
+
+const getSortedUniqueSkills = users => {
+  const arrayAll = users.reduce((total, user, index, array) => {
+    total.push(...user.skills);
+    return total;
+  }, []);
+  console.log('Массив из всех свойств:', arrayAll);
+
+
+  const arrayFilter = arrayAll.filter((item, index, array) => {
+    return array.indexOf(item) === index
   });
+  console.log('Отфильтрованные свойства:', arrayFilter);
 
-// ------------------------------------------------------2-й вариант (метод - Sort)
-  // const resultSort = users.sort((prev, next) => {
-  // return prev.friends.length - next.friends.length
-  // });
-  // const result = resultSort.map(item => item.name);
+  return console.log('Отсортированные свойства:', arrayFilter.sort());
+}
 
-  return result;
-};
 
-console.log(getNamesSortedByFriendsCount(users));
-// [ 'Moore Hensley', 'Sharlene Bush', 'Elma Head', 'Carey Barr', 'Blackburn Dotson', 'Sheree Anthony', 'Ross Vazquez' ]
+console.log(getSortedUniqueSkills(users));
+// [ 'adipisicing', 'amet', 'anim', 'commodo', 'culpa', 'elit', 'ex', 'ipsum', 'irure', 'laborum', 'lorem', 'mollit', 'non', 'nostrud', 'nulla', 'proident', 'tempor', 'velit', 'veniam' ]
+
 
 
